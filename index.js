@@ -46,7 +46,7 @@ var output = function(options) {
 	};
 
 	var outputter = csvOutput({
-		delimiter: settings.delimeter,
+		delimiter: settings.delimiter,
 		header: settings.header,
 	});
 
