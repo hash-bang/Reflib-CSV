@@ -11,7 +11,7 @@ var parse = function(data, options) {
 
 	var parser = csvParser({
 		columns: header => header.map(col => _.camelCase(col)),
-		delimeter: settings.delimiter,
+		delimiter: settings.delimiter,
 	});
 
 	parser.on('readable', ()=> {
@@ -35,7 +35,7 @@ var parse = function(data, options) {
 var output = function(options) {
 	var settings = {
 		content: undefined,
-		delimeter: ',',
+		delimiter: ',',
 		header: true,
 		fields: {
 			'$default': val => _.isArray(val) ? val.join(' and ') : val,
