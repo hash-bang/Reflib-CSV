@@ -3,11 +3,10 @@ var csvParser = require('csv-parse');
 var csvOutput = require('csv-stringify');
 
 var parse = function(data, options) {
-	var settings = {
+	var settings = _.defaults(options, {
 		defaultType: 'report',
 		delimiter: ',',
-		...options,
-	};
+	});
 
 	var parser = csvParser({
 		columns: header => header.map(col => _.camelCase(col)),
@@ -33,17 +32,15 @@ var parse = function(data, options) {
 };
 
 var output = function(options) {
-	var settings = {
+	var settings = _.defaults(options, {
 		content: undefined,
 		delimiter: ',',
 		header: true,
 		fields: {
 			'$default': val => _.isArray(val) ? val.join(' and ') : val,
-			...(options.fields || {})
 		},
 		stream: undefined,
-		...options,
-	};
+	});
 
 	var outputter = csvOutput({
 		delimiter: settings.delimiter,
