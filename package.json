@@ -1,6 +1,6 @@
 {
   "name": "reflib-csv",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Reflib parser for CSV files",
   "main": "index.js",
   "repository": {
