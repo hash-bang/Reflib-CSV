@@ -10,9 +10,9 @@ describe('CSV parser', function() {
 			expect(data).to.be.an('array');
 			expect(data).to.have.length(3);
 			expect(data).to.be.deep.equal([
-				{title: 'Paper 1', author: 'Joe Random'},
-				{title: 'Paper 2', author: 'Jane Quark'},
-				{title: 'Paper 3', author: 'Eric Electron'},
+				{title: 'Paper 1', author: 'Joe Random', keywords: ''},
+				{title: 'Paper 2', author: 'Jane Quark', keywords: 'Foo\rBar\rBaz'},
+				{title: 'Paper 3', author: 'Eric Electron', keywords: ''},
 			]);
 			done();
 		}

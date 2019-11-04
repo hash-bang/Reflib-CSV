@@ -45,6 +45,7 @@ var output = function(options) {
 	var outputter = csvOutput({
 		delimiter: settings.delimiter,
 		header: settings.header,
+		quoted_match: /[^a-z0-9 _+-=]/i, // Better CSV escaping that doesn't screw up with multi line weird Windows encoding
 	});
 
 
