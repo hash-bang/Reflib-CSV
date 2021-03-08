@@ -1,34 +1,10 @@
+var _ = {
+	camelCase: require('lodash/camelCase'),
+	mapValues: require('lodash/mapValues'),
+};
+
 var csvParser = require('csv-parse');
 var csvOutput = require('csv-stringify');
-
-/**
-* Camel case any input string
-* This is functionally the same as Lodash's camelCase() function
-* @param {string} input The input string to camelize
-* @return {string} The input string in camelCase format
-* @url https://github.com/MomsFriendlyDevCo/Nodash
-*/
-var camelCase = input => input
-	.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) =>
-		index === 0 ? word.toLowerCase() : word.toUpperCase()
-	)
-	.replace(/\s+/g, '');
-
-
-/**
-* Return a shallow copy of an objet running each value though a mutator function
-* @param {Object} input The input object
-* @param {function} cb The callback to run on each value. Function is executed as `(value, key)`
-* @returns {Object} A shallow copy of the input object with each function run through the callback
-* @url https://github.com/MomsFriendlyDevCo/Nodash
-*/
-var mapValues = (input, cb) =>
-	Object.fromEntries(
-		Object.entries(input).map(i =>
-			[i[0], cb(i[1], i[0])]
-		)
-	);
-
 
 var parse = function(data, options) {
 	var settings = {
@@ -38,7 +14,7 @@ var parse = function(data, options) {
 	};
 
 	var parser = csvParser({
-		columns: header => header.map(col => camelCase(col)),
+		columns: header => header.map(col => _.camelCase(col)),
 		delimiter: settings.delimiter,
 	});
 
@@ -86,7 +62,7 @@ var output = function(options) {
 	*/
 	var push = (ref, cb) => {
 		outputter.write(
-			mapValues(ref, (v, k) =>
+			_.mapValues(ref, (v, k) =>
 				settings.fields[settings.fields[k] || '$default'](v, k)
 			)
 		, cb);
